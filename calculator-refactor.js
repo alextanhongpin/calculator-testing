@@ -1,7 +1,7 @@
 class Calculator {
   constructor () {
     // Holds the current value
-  	this.value = 0
+    this.value = 0
 
     // Holds the last value
     this.lastValue = 0
@@ -16,10 +16,10 @@ class Calculator {
     this.operators = []
   }
   add () {
-  	const values = [...arguments]
+    const values = [...arguments]
     this.lastOperator = 'add'
     this.lastValue = values.reduce((a, b) => a + b, this.value)
-  	return this.lastValue
+    return this.lastValue
   }
   minus () {
     const values = [...arguments]
@@ -40,7 +40,10 @@ class Calculator {
     return this.lastValue
   }
   save (val) {
-  	this.value = val
+    if (val === null || val === undefined) {
+      throw new Error('CalculatorError: Cannot save() non-integer number')
+    }
+    this.value = val
 
     this.values.push(this.value)
     this.operators.push(this.lastOperator)
@@ -49,7 +52,7 @@ class Calculator {
     this.lastOperator = null
   }
   reset () {
-  	this.value = 0
+    this.value = 0
     this.lastValue = 0
     this.lastOperator = null
     this.values = [0]
